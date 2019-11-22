@@ -1,10 +1,10 @@
-const Koa = require("koa");
-const Router = require("koa-router");
-const Logger = require("koa-logger");
-const BodyParser = require("koa-bodyparser");
-const respond = require("koa-respond");
+const Koa = require('koa');
+const Router = require('koa-router');
+const Logger = require('koa-logger');
+const BodyParser = require('koa-bodyparser');
+const respond = require('koa-respond');
 
-const router = require("./routes");
+const router = require('./routes');
 
 const app = new Koa();
 app.use(Logger());

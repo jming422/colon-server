@@ -1,17 +1,20 @@
-const moment = require("moment");
+const moment = require('moment');
 
-const putInfo = async ctx => {
+const { getStatus, saveStatus } = require('../controllers/statusInfo');
+
+const putInfo = async (ctx) => {
   const {
     request: {
-      query: { carrier, startDate, endDate }
-    }
+      body: { status, host },
+    },
   } = ctx;
 
-  if (!carrier || !["fedex", "ups"].includes(carrier.toLowerCase())) {
-    return ctx.badRequest("Bad carrier");
-  }
+  const thisHost = host === 'top' ? 'top' : 'bottom';
+  const otherHost = thisHost === 'top' ? 'bottom' : 'top';
 
-  return ctx.ok();
+  await saveStatus(thisHost, status);
+  const res = await getStatus(otherHost);
+  return ctx.ok(res);
 };
 
 module.exports = { putInfo };

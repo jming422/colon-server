@@ -6,10 +6,12 @@ const apiRouter = new Router();
 const { requireAuth } = require('../auth');
 
 const putInfo = require('./putInfo');
+const colon = require('./colon');
 
 apiRouter
   .prefix('/api')
-  .use('/putInfo', requireAuth, putInfo);
+  .post('/putInfo', requireAuth, putInfo)
+  .get('/colon', colon);
 
 router.use(apiRouter.routes());
 
