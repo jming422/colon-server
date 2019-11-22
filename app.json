@@ -1,0 +1,7 @@
+{
+  "name": ": Server",
+  "description": "A Koa server to collect loo.io data and make it available to :",
+  "repository": "https://github.com/jming422/colon-server",
+  "keywords": ["node", "koa", "heroku", "iot"],
+  "image": "heroku/nodejs"
+}
