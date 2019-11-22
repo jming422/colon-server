@@ -16,7 +16,6 @@
     "koa": "^2.11.0",
     "koa-body": "^4.1.1",
     "koa-bodyparser": "^4.2.1",
-    "koa-logger": "^3.2.1",
     "koa-respond": "^2.1.0",
     "koa-router": "^7.4.0",
     "koa-send": "^5.0.0",

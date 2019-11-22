@@ -15,7 +15,23 @@ module.exports = async (ctx) => {
 
   const otherHost = host === 'top' ? 'bottom' : 'top';
 
-  await saveStatus(host, status);
-  const res = await getStatus(otherHost);
-  return ctx.ok(res);
+  try {
+    await saveStatus(host, status);
+  } catch (err) {
+    console.error('Error trying to save status to db:');
+    console.error(err);
+    console.log('Still trying to get other status and respond...');
+  } finally {
+    try {
+      const res = await getStatus(otherHost);
+      if (!res) {
+        throw Error('Got back empty response from getStatus!');
+      }
+      return ctx.ok(res.status);
+    } catch (err) {
+      console.error('Error trying to get other status:');
+      console.error(err);
+      return ctx.internalServerError();
+    }
+  }
 };
