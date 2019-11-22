@@ -9,10 +9,13 @@ module.exports = async (ctx) => {
     },
   } = ctx;
 
-  const thisHost = host === 'top' ? 'top' : 'bottom';
-  const otherHost = thisHost === 'top' ? 'bottom' : 'top';
+  if (!['top', 'bottom'].includes(host)) {
+    return ctx.badRequest('Invalid host location');
+  }
 
-  await saveStatus(thisHost, status);
+  const otherHost = host === 'top' ? 'bottom' : 'top';
+
+  await saveStatus(host, status);
   const res = await getStatus(otherHost);
   return ctx.ok(res);
 };

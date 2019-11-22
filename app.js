@@ -6,6 +6,9 @@ const respond = require('koa-respond');
 
 const router = require('./routes');
 
+const db = require('./db');
+db.initDb();
+
 const app = new Koa();
 app.use(Logger());
 app.use(BodyParser());
