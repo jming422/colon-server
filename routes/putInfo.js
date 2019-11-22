@@ -2,7 +2,7 @@ const moment = require('moment');
 
 const { getStatus, saveStatus } = require('../controllers/statusInfo');
 
-const putInfo = async (ctx) => {
+module.exports = async (ctx) => {
   const {
     request: {
       body: { status, host },
@@ -16,5 +16,3 @@ const putInfo = async (ctx) => {
   const res = await getStatus(otherHost);
   return ctx.ok(res);
 };
-
-module.exports = { putInfo };
