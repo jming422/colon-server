@@ -10,7 +10,7 @@ db.initDb();
 
 const app = new Koa();
 app.use(BodyParser());
-app.use(respond());
+app.use(respond({ autoMessage: false }));
 
 app.use(router.routes());
 app.use(router.allowedMethods());
