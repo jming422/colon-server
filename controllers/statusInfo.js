@@ -25,8 +25,8 @@ module.exports.saveStatus = async (location, status) => {
   const client = await db.getPool().connect();
 
   await client.query({
-    text: 'INSERT INTO door_status(location, status) VALUES ($1, $2)',
-    values: [location, status],
+    text: 'UPDATE door_status SET status = $1, last_updated = $2 WHERE location = $3',
+    values: [status, new Date(), location],
   });
 
   client.release();
